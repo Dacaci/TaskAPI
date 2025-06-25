@@ -1,0 +1,67 @@
+### Créer un utilisateur
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "username": "Mostapha",
+  "password": "secret"
+}
+
+### Créer un deuxième utilisateur
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "username": "Mostapha",
+  "password": "password"
+}
+
+### Afficher un utilisateur
+GET http://localhost:8080/users/1
+
+### Créer un projet (créateur : Mostapha, id=1)
+POST http://localhost:8080/projects
+Content-Type: application/json
+
+{
+  "name": "Projet Test",
+  "creatorId": 1
+}
+
+### Afficher les projets créés par alice
+GET http://localhost:8080/users/1/projects
+
+### Créer une tâche (projet id=1, assignée à Mostapha, id=2)
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "title": "Première tâche",
+  "projectId": 1,
+  "assigneeId": 2
+}
+
+### Afficher les tâches assignées à bob
+GET http://localhost:8080/users/2/tasks
+
+### Afficher les tâches du projet
+GET http://localhost:8080/projects/1/tasks
+
+### Détail du projet avec ses tâches
+GET http://localhost:8080/projects/1
+
+### Changer le statut de la tâche (id=1) en IN_PROGRESS
+PATCH http://localhost:8080/tasks/1
+Content-Type: application/json
+
+{
+  "status": "IN_PROGRESS"
+}
+
+### Changer le statut de la tâche (id=1) en DONE
+PATCH http://localhost:8080/tasks/1
+Content-Type: application/json
+
+{
+  "status": "DONE"
+}
